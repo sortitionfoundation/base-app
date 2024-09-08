@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "base_app"
+version = "0.1.0"
+description = ""
+authors = ["Philipp C. Verpoort <pcv@sortitionfoundation.org>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.12"
+pyside6 = "^6.7.2"
+jsonpickle = "^4.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
