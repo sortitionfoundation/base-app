@@ -4,4 +4,6 @@ The Sortition Foundation Base App is a base library for creating GUI apps. It de
 
 This software is based on [Qt6](https://doc.qt.io/qt-6/) and [PySide6](https://pypi.org/project/PySide6/) (a Python binding for Qt).
 
+PySide6 is dynamically linked and not distributed with this package. Please refer to its license for terms and conditions.
+
 This software is not an app itself. You cannot run it. It can only be used to build other apps.
