@@ -39,6 +39,7 @@ class AppContext:
                  main_window_cls: type[AbstractMainWindow],
                  model_manager_cls: type[AbstractModelManager],
                  project_cls: type[AbstractProject],
+                 about_html_template: str | None = None,
                  ):
         # Set app status to closed and changes to saved.
         self._status = AppStatus.CLOSED
@@ -48,6 +49,7 @@ class AppContext:
         self._app_name = app_name
         self._app_version = app_version
         self._project_file_ending = project_file_ending
+        self._about_html_template = about_html_template
 
         # Create QApplication.
         self._qapp = QtWidgets.QApplication()
@@ -108,6 +110,10 @@ class AppContext:
     @property
     def app_version(self) -> str:
         return self._app_version
+
+    @property
+    def about_html_template(self) -> str:
+        return self._about_html_template
 
     @property
     def project_file_ending(self) -> str:

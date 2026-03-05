@@ -217,7 +217,7 @@ class AbstractMainWindow(QtWidgets.QMainWindow):
                     self._menu_items[f"{menu_id}:{item_id}"].setDisabled(not self._ctx.is_open)
 
     def _action_about(self):
-        AboutDialog.display(self._ctx.app_name, self._ctx.app_version, self)
+        AboutDialog.display(self._ctx.app_name, self._ctx.app_version, self._ctx.about_html_template, self)
 
     def _action_doc(self):
         QDesktopServices.openUrl(QUrl(
