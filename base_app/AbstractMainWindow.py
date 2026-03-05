@@ -109,13 +109,6 @@ class AbstractMainWindow(QtWidgets.QMainWindow):
             'help': {
                 'name': 'Help',
                 'items': {
-                    'doc': {
-                        'type': 'action',
-                        'name': 'Online documentation',
-                        'desc': 'Find help in the online documentation.',
-                        'show_when_closed': True,
-                        'trigger': self._action_doc,
-                    },
                     'about': {
                         'type': 'action',
                         'name': '&About',
@@ -218,9 +211,3 @@ class AbstractMainWindow(QtWidgets.QMainWindow):
 
     def _action_about(self):
         AboutDialog.display(self._ctx.app_name, self._ctx.app_version, self._ctx.about_html_template, self)
-
-    def _action_doc(self):
-        QDesktopServices.openUrl(QUrl(
-            f"https://software.sortitionfoundation.org/{self._ctx.app_name}",
-            QUrl.ParsingMode.TolerantMode,
-        ))
