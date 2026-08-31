@@ -2,10 +2,10 @@ from typing import TYPE_CHECKING, Optional
 
 from pathlib import Path
 
-import jsonpickle
 from PySide6.QtWidgets import QMessageBox, QFileDialog
 
 from .AbstractProject import AbstractProject
+from .ProjectFile import ProjectFileError, decode_project, encode_project
 
 if TYPE_CHECKING:
     from . import AppContext
@@ -57,8 +57,11 @@ class ProjectManager:
             raise Exception('File could not be found.')
 
         try:
-            with open(self._file_path, 'r') as file_handle:
-                return jsonpickle.decode(file_handle.read(), keys=True)
+            raw = self._file_path.read_bytes()
+            return decode_project(raw, self._project_cls, self._ctx.app_name)
+        except ProjectFileError:
+            # Already a clear, user-facing message -- pass it through as-is.
+            raise
         except Exception as ex:
             raise Exception(f"Error reading file: {ex}")
 
@@ -72,8 +75,9 @@ class ProjectManager:
             raise Exception('Filename is not set.')
 
         try:
-            with open(self._file_path, 'w') as file_handle:
-                return file_handle.write(jsonpickle.encode(project, keys=True))
+            raw = encode_project(project, self._ctx.app_name, self._ctx.app_version)
+            with open(self._file_path, 'wb') as file_handle:
+                return file_handle.write(raw)
         except Exception as ex:
             raise Exception(f"Error writing file: {ex}")
 

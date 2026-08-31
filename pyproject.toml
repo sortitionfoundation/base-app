@@ -1,6 +1,6 @@
 [project]
-name = "base_app"
-version = "0.1.0"
+name = "base-app"
+version = "0.2.0"
 description = ""
 authors = [
     { name = "Philipp C. Verpoort", email = "pcv@sortitionfoundation.org" }
